@@ -20,27 +20,63 @@ var todoList = {
     var totalTodos = this.todos.length;
     var completedTodos = 0;
     
-    // Get number of completed todos.
-    for (var i = 0; i < totalTodos; i++) {
-      if (this.todos[i].completed === true) {
-        completedTodos++;
-      }
-    }
+    // Get number of completed todos with for loop
+//    for (var i = 0; i < totalTodos; i++) {
+//      if (this.todos[i].completed === true) {
+//        completedTodos++;
+//      }
+//    }
+  // Get number of completed todos using forEach() - because this is an array
+    this.todos.forEach(function(todo) {
+         if (todo.completed === true) {
+         completedTodos++;
+         }
+  });
     
     // Case 1: If everything’s true, make everything false.
-    if (completedTodos === totalTodos) {
-      for (var i = 0; i < totalTodos; i++) {
-        this.todos[i].completed = false;
-      }
+//    if (completedTodos === totalTodos) {
+//      for (var i = 0; i < totalTodos; i++) {
+//        this.todos[i].completed = false;
+//      }
+        // Case 2: Otherwise, make everything true.
+//    } else {
+//      for (var i = 0; i < totalTodos; i++) {
+//        this.todos[i].completed = true;
+//      }      
+//    }
+//  }
+//    };
+    
+        //    OR:
+        // Case 1: If everything’s true, make everything false, with forEach()
+//      if (completedTodos === totalTodos) {
+//        this.todos.forEach(function(todo){
+//        todo.completed = false;
+//     }); 
+//      }  
     // Case 2: Otherwise, make everything true.
-    } else {
-      for (var i = 0; i < totalTodos; i++) {
-        this.todos[i].completed = true;
-      }      
-    }
-  }
-};
-
+//      else {
+//       this.todos.forEach(function(todo){
+//       todo.completed = true;
+//    });
+//    }
+//  }
+//}; 
+    
+    // Simpler code: 
+    // Case 1: If everything’s true, make everything false with forEach()
+    this.todos.forEach(function(todo){
+      if (completedTodos === totalTodos) {
+        todo.completed = false;
+     } 
+      // Case 2: Otherwise, make everything true.
+      else {
+       todo.completed = true;
+     }
+    });
+   }                     
+  }; 
+    
 var handlers = {
   addTodo: function() {
     var addTodoTextInput = document.getElementById('addTodoTextInput');
@@ -110,4 +146,3 @@ var view = {
   }
 };
 view.setUpEventListeners();
-
