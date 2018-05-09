@@ -112,7 +112,22 @@ var view = {
   displayTodos: function() {
     var todosUl = document.querySelector('ul');
     todosUl.innerHTML = '';
-    for (var i = 0; i < todoList.todos.length; i++) {
+    todoList.todos.forEach(function(todo, position){
+      var todoLi = document.createElement('li');
+      var todoTextWithCompletion = '';
+      if (todo.completed === true) {
+          todoTextWithCompletion = '(x) ' + todo.todoText;
+          } else {
+          todoTextWithCompletion = '( ) ' + todo.todoText;
+          }
+      todoLi.id = position;
+      todoLi.textContent = todoTextWithCompletion;
+      todosUl.appendChild(todoLi);
+      todoLi.appendChild(this.createDeleteButton());
+    },this);
+    
+    
+/*    for (var i = 0; i < todoList.todos.length; i++) {
       var todoLi = document.createElement('li');
       var todo = todoList.todos[i];
       var todoTextWithCompletion = '';
@@ -126,7 +141,7 @@ var view = {
       todoLi.textContent = todoTextWithCompletion;
       todosUl.appendChild(todoLi);
       todoLi.appendChild(this.createDeleteButton());
-    }
+    } */
   },
   createDeleteButton: function () {
   var deleteButton= document.createElement('button');
